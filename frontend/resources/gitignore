@@ -1,0 +1,10 @@
+/node_modules
+/android
+/electron
+/ios
+/build
+
+
+.DS_Store
+.env*
+*.log*
