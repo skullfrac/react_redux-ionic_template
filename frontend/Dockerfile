@@ -18,7 +18,12 @@ RUN npm install \
     @types/react-router \
     @types/react-router-dom \
     @ionic/react \
-    ionicons
+    ionicons \
+    redux \
+    react-redux \
+    redux-persist \
+    redux-thunk \
+    @types/react-redux
 
 RUN yes | npm run eject
 RUN \
@@ -45,7 +50,9 @@ RUN rm ${REACT_APP_PATH}/frontend/src/App.css \
 
 RUN mkdir -p ${REACT_APP_PATH}/frontend/src/component \
   && mkdir -p ${REACT_APP_PATH}/frontend/src/container/App \
-  && mkdir -p ${REACT_APP_PATH}/frontend/src/page/Home
+  && mkdir -p ${REACT_APP_PATH}/frontend/src/page/Home \
+  && mkdir -p ${REACT_APP_PATH}/frontend/src/store/layout \
+  && mkdir -p ${REACT_APP_PATH}/frontend/src/service
 
 COPY ./resources/App.tsx ${REACT_APP_PATH}/frontend/src/container/App/index.tsx
 COPY ./resources/Home.tsx ${REACT_APP_PATH}/frontend/src/page/Home/index.tsx
