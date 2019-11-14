@@ -12,18 +12,26 @@ RUN npx create-react-app ${SERVERNAME} --typescript
 
 WORKDIR ${REACT_APP_PATH}/${SERVERNAME}
 RUN npm install \
-    react-router \
-    react-router-dom \
+    @types/history \
     @types/react \
+    @types/react-redux \
     @types/react-router \
     @types/react-router-dom \
+    @types/redux-logger \
+    @types/redux-persist \
     @ionic/react \
     ionicons \
-    redux \
+    connected-react-router \
+    history \
     react-redux \
+    react-router \
+    react-router-dom \
+    redux \
+    redux-logger \
     redux-persist \
-    redux-thunk \
-    @types/react-redux
+    redux-saga \
+    typesafe-actions
+
 
 RUN yes | npm run eject
 RUN \
@@ -33,7 +41,7 @@ RUN \
 
 RUN npm i --save \
   @capacitor/core \
-  @capacitor/cli \
+  @capacitor/cli
 
 RUN npx cap init ${SERVERNAME} com.${SERVERNAME}.com --web-dir ./public --npm-client yarn
 RUN npx cap add android
@@ -57,5 +65,6 @@ RUN mkdir -p ${REACT_APP_PATH}/frontend/src/component \
 COPY ./resources/App.tsx ${REACT_APP_PATH}/frontend/src/container/App/index.tsx
 COPY ./resources/Home.tsx ${REACT_APP_PATH}/frontend/src/page/Home/index.tsx
 COPY ./resources/index.tsx ${REACT_APP_PATH}/frontend/src/index.tsx
+COPY ./resources/store ${REACT_APP_PATH}/frontend/src/store
 
 ENTRYPOINT ["npm", "run", "start"]
